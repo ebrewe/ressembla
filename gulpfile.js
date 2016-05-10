@@ -39,7 +39,7 @@ gulp.task("webpack-dev-server", function(callback) {
 	myConfig.debug = true;
 
 	// Start a webpack-dev-server
-	new WebpackDevServer(webpack(myConfig), {
+	/*new WebpackDevServer(webpack(myConfig), {
 		publicPath: myConfig.output.publicPath,
 		stats: {
 			colors: true
@@ -47,7 +47,8 @@ gulp.task("webpack-dev-server", function(callback) {
 	}).listen(8080, "localhost", function(err) {
 		if(err) throw new gutil.PluginError("webpack-dev-server", err);
 		gutil.log("[webpack-dev-server]", "http://localhost:8080/webpack-dev-server/index.html");
-	});
+	});*/
+  require('./node_modules/webpack-dev-server/bin/webpack-dev-server.js');
 });
 
 // Production build
