@@ -12,7 +12,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var watch = require('gulp-watch');
 
 //paths
-var DIST_PATH = "public/dist/";
+var DIST_PATH = "dist/";
 var STYLE_PATH = "style/**/*.scss";
 
 gulp.task("default", ['styles', 'watch', 'webpack-dev-server']);
@@ -30,6 +30,19 @@ gulp.task("styles", function(){
       }))
       .pipe(sourcemaps.write())
       .pipe(gulp.dest(DIST_PATH + 'style/'));
+});
+
+gulp.task("migrate", function(){
+    gulp.src('index.html')
+      .pipe(gulp.dest('dist/'));
+    gulp.src('jquery.min.js')
+      .pipe(gulp.dest('dist/'));
+    gulp.src('bundle.js')
+      .pipe(gulp.dest('dist/'));
+    gulp.src('bundle.js')
+      .pipe(gulp.dest('dist/'));
+    gulp.src('style/*/**')
+      .pipe(gulp.dest('dist/style/'));
 });
 
 gulp.task("webpack-dev-server", function(callback) {
@@ -52,11 +65,11 @@ gulp.task("webpack-dev-server", function(callback) {
 });
 
 // Production build
-gulp.task("build", ["webpack:build"]);
+gulp.task("build", ['styles', "webpack:build", 'migrate']);
 
-gulp.task("webpack:build", function(callback) {
+gulp.task("webpack:build", function() {
 	// modify some webpack config options
-	var myConfig = Object.create(webpackConfig);
+	/*var myConfig = Object.create(webpackConfig);
 	myConfig.plugins = myConfig.plugins.concat(
 		new webpack.DefinePlugin({
 			"process.env": {
@@ -75,7 +88,9 @@ gulp.task("webpack:build", function(callback) {
 			colors: true
 		}));
 		callback();
-	});
+	});*/
+  require('./node_modules/webpack/bin/webpack.js').exec;
+  return console.log('ran webserver');
 });
 
 // modify some webpack config options
