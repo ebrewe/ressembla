@@ -28,8 +28,9 @@ export default class TicketTab extends Component {
             let link= $(this).attr('data-linkUrl'),
                 number = $(this).find('td.number').find('p').text(),
                 summary = $(this).find('.summary').find('.list-column-wrapper').text(),
-                milestone = $(this).find('.milestone_id').find('.list-column-wrapper').text();
-                links.push({link, number, summary, milestone}); 
+                milestone = $(this).find('.milestone_id').find('.list-column-wrapper').text(),
+                space = $(this).closest('#ticket_list.clearfix').find('.s-table-header').attr('data-group-id');
+                links.push({link, number, summary, milestone, space}); 
          })
       var markup="";
       function getItemNumber(numStr){
@@ -44,6 +45,7 @@ export default class TicketTab extends Component {
             '<div class="row" style="padding:0 15px;"><span class="'+numberClass+' item-number"><i class="fa fa-star"></i>' + getItemNumber(item.number) + '</span>' +
             '<span class="'+summaryClass+' item-summary">'+$.trim(item.summary) + '</span></div>' +
             '<span class="'+milestoneClass+' item-milestone" title="'+item.summary+'">'+$.trim(item.milestone)+'</span>' +
+            '<div class="row space-row" style="padding:0 15px;"><span class="item-space"><i class="fa fa-globe"></i>' + item.space + '</span></div>' +
             '</li>';
         
       });
