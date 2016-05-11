@@ -41,8 +41,8 @@ export default class TicketTab extends Component {
             milestoneClass = item.milestone ? 'col-sm-5' : ''; 
 
         markup += "<li class='ticket-item row' data-link='" + item.link +"' id='" + item.number + "'>" +
-            '<span class="'+numberClass+' item-number"><i class="fa fa-star"></i>' + getItemNumber(item.number) + '</span>' +
-            '<span class="'+summaryClass+' item-summary">'+$.trim(item.summary) + '</span>' +
+            '<div class="row" style="padding:0 15px;"><span class="'+numberClass+' item-number"><i class="fa fa-star"></i>' + getItemNumber(item.number) + '</span>' +
+            '<span class="'+summaryClass+' item-summary">'+$.trim(item.summary) + '</span></div>' +
             '<span class="'+milestoneClass+' item-milestone" title="'+item.summary+'">'+$.trim(item.milestone)+'</span>' +
             '</li>';
         

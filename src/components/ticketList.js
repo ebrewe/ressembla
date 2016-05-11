@@ -19,7 +19,6 @@ export default class TicketList extends Component {
     tabs[num] = true;
 
     $(e.target).closest('a').addClass('active');
-    console.log(tabs);
     this.setState({visibleTabs: tabs});
   }
   render(){
