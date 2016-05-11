@@ -29,7 +29,7 @@ export default class TicketTab extends Component {
                 number = $(this).find('td.number').find('p').text(),
                 summary = $(this).find('.summary').find('.list-column-wrapper').text(),
                 milestone = $(this).find('.milestone_id').find('.list-column-wrapper').text(),
-                space = $(this).closest('#ticket_list.clearfix').find('.s-table-header').attr('data-group-id');
+                space = $(this).closest('table.listing.tickets').prev('div.s-table-header').attr('data-group-id');
                 links.push({link, number, summary, milestone, space}); 
          })
       var markup="";
