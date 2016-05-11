@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+//import { connect } from 'react-redux';
+//import {fetchTickets} from '../actions/index';
 import $ from 'jquery';
 
 export default class TicketTab extends Component {
+  constructor(props){
+    super(props);
+  }
   componentWillMount(){
-    console.log(this.props.ticketUrl, this.props.containerID);
     var self= this;
     this.url = "";
 
@@ -12,6 +16,8 @@ export default class TicketTab extends Component {
         this.parseData(data);
         this.reStyle();
       })
+      /*this.props.fetchTickets(); 
+      console.log(this.props)*/
   }
   parseData(data){
      var el = document.createElement('html'),
@@ -26,15 +32,18 @@ export default class TicketTab extends Component {
                 links.push({link, number, summary, milestone}); 
          })
       var markup="";
+      function getItemNumber(numStr){
+        return numStr.match( /\d+/g );
+      }
       links.map((item)=>{
         var numberClass = item.milestone ? 'col-sm-2' : 'col-sm-4',
             summaryClass = item.milestone ? 'col-sm-5' : 'col-sm-10',
             milestoneClass = item.milestone ? 'col-sm-5' : ''; 
 
         markup += "<li class='ticket-item row' data-link='" + item.link +"' id='" + item.number + "'>" +
-            '<span class="'+numberClass+' item-number">' +item.number + '</span>' +
-            '<span class="'+summaryClass+' item-summary">'+item.summary + '</span>' +
-            '<span class="'+milestoneClass+' item-milestone">'+item.milestone+'</span>' +
+            '<span class="'+numberClass+' item-number"><i class="fa fa-star"></i>' + getItemNumber(item.number) + '</span>' +
+            '<span class="'+summaryClass+' item-summary">'+$.trim(item.summary) + '</span>' +
+            '<span class="'+milestoneClass+' item-milestone" title="'+item.summary+'">'+$.trim(item.milestone)+'</span>' +
             '</li>';
         
       });
@@ -57,9 +66,13 @@ export default class TicketTab extends Component {
     return(
       <div className={`${visClass} ticket-list-inlay container-fluid`} id={this.props.containerID}>
         <ul className="list-ticket-list">
-
+            <div className="load-container">
+              <div className="circle"></div>
+            </div>
         </ul>
       </div>
     );
   }
 }
+
+//export default connect(null, {fetchTickets})(TicketTab)

@@ -7,7 +7,7 @@ export default function(state = INTIAL_STATE, action){
   switch(action.type){
 
     case ACTION_TYPES.FETCH_TICKETS:
-      return {...state, tickets: action.payload.data}
+      return state
 
     default:
       return state;
