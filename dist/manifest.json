@@ -2,14 +2,20 @@
   "manifest_version": 2,
   "name": "Ressembla",
   "description": "This extension provides a permanent list of your open and followed Assembla tickets to your browser",
-  "version": "0.0.2.2",
+  "version": "0.0.2.8",
 
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "index.html"
   },
+  "icons": {
+    "16": "icon.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
   "permissions": [
     "activeTab",
-    "https://www.assembla.com/"
+    "https://www.assembla.com/",
+    "storage"
   ]
 }
