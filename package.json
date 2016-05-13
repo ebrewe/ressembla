@@ -1,9 +1,9 @@
 {
-  "name": "redux-launchpad",
-  "version": "1.0.0",
-  "description": "Simple starter package for Redux with React and Babel support",
+  "name": "ressembla",
+  "version": "0.1.0.0",
+  "description": "Chrome extension for Assembla",
   "main": "index.js",
-  "repository": "git@github.com:ebrewe/ReduxLaunchpad",
+  "repository": "git@github.com:ebrewe/ressembla",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
