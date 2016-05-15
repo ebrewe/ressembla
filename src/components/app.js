@@ -1,12 +1,12 @@
 import React from 'react';
 import { Component } from 'react';
-import TicketList from './ticketList';
+import TicketsList from './ticketsList';
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <TicketList />
+        <TicketsList />
       </div>
 
     );
