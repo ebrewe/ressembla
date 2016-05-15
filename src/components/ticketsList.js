@@ -3,6 +3,7 @@ import {fetchOpenTickets, fetchFollowedTickets} from '../actions/index';
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import Tickets from './tickets';
+import ReactDOM from 'react-dom';
 
 class TicketsList extends Component {
   constructor(props){
@@ -12,6 +13,9 @@ class TicketsList extends Component {
   componentWillMount(){
     this.props.fetchOpenTickets();
     this.props.fetchFollowedTickets();
+  }
+  componentDidMount(){
+    ReactDOM.findDOMNode(this.refs.searchInput).focus();
   }
   handleInputChange(e){
     this.setState({searchString: e.target.value});
@@ -58,6 +62,19 @@ class TicketsList extends Component {
       return false
     });
   }
+  handleKeyDown(e){
+    const code = e.keyCode;
+    const keycodes = { up:38, down:40, tab:9, enter:13};
+    let actionKey = false;
+    for(let i in keycodes){
+      if (code == keycodes[i]) {
+        return actionKey = true;
+      }
+    }
+    if(!actionKey){
+      $('#search').focus();
+    }
+  }
   render(){
     var tickets = {open:[], followed:[]}
     if(this.props.openTickets.length > 0){
@@ -66,9 +83,8 @@ class TicketsList extends Component {
     if(this.props.followedTickets.length > 0){
       tickets.followed = this.filterResults(this.parseData(this.props.followedTickets));
     }
-    console.log(`open: ${tickets.open} followed:${tickets.followed}`);
     return(
-      <div id="pages" className="">
+      <div id="pages" className="" onKeyDown={this.handleKeyDown.bind(this)}>
         <div className="header clearfix">
             <div className="branding">
               <h1>Assemb<span className="accent">{"{"}</span>list<span className="accent">{"}"}</span></h1>
@@ -79,7 +95,7 @@ class TicketsList extends Component {
               <li className="list-item list-item-search">
                 <div className="search">
                   <i className="fa fa-search" />
-                  <input className="input-search" id="search" value={this.state.searchString} onChange={this.handleInputChange.bind(this)} />
+                  <input className="input-search" id="search" ref="searchInput" value={this.state.searchString} onChange={this.handleInputChange.bind(this)} />
                 </div>
               </li>
             </ul>

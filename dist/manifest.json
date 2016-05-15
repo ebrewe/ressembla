@@ -13,6 +13,15 @@
     "48": "icon48.png",
     "128": "icon128.png"
   },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+L",
+        "mac": "Command+Shift+L"
+      },
+      "description": "Open the extension window"
+    }
+  },
   "permissions": [
     "activeTab",
     "https://www.assembla.com/",
