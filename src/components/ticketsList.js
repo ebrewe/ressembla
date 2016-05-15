@@ -71,7 +71,7 @@ class TicketsList extends Component {
       <div id="pages" className="">
         <div className="header clearfix">
             <div className="branding">
-              <h1>Ressembla</h1>
+              <h1>Assemb<span className="accent">{"{"}</span>list<span className="accent">{"}"}</span></h1>
             </div>
             <ul className="page-navigation list">
               <li className="list-item"><a href className="active tab-right" onClick={(e)=>{this.tabClick(e, 0)}} title="my tickets">Open Tickets</a></li>

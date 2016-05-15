@@ -270,8 +270,11 @@ body::-webkit-scrollbar-thumb {
   border-radius:8px;
 }
 
+.accent{
+  color:lightblue!important; 
+}
 .highlight {
-  background:yellow!important; 
+  background:yellow!important;
 }
 
 @keyframes spin {
