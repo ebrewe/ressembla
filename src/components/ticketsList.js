@@ -64,7 +64,7 @@ class TicketsList extends Component {
   }
   handleKeyDown(e){
     const code = e.keyCode;
-    const keycodes = { up:38, down:40, tab:9, enter:13};
+    const keycodes = { up:38, down:40, tab:9, enter:13, shift:16};
     let actionKey = false;
     for(let i in keycodes){
       if (code == keycodes[i]) {
