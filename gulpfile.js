@@ -38,6 +38,8 @@ gulp.task("migrate", function(){
     gulp.src('jquery.min.js')
       .pipe(gulp.dest('dist/'));
     gulp.src('bundle.js')
+      .pipe(sourcemaps.init())
+      .pipe(minify())
       .pipe(gulp.dest('dist/'));
     gulp.src('bundle.js')
       .pipe(gulp.dest('dist/'));
