@@ -26,14 +26,16 @@ export default class Tickets extends Component {
       }
       return(
         <li className="ticket-item row" data-link={ticket.link} key={`${this.props.containerID}-${ticket.number}`} onClick={(e)=>this.handleClick(`https://www.assembla.com/${ticket.link}`)}>
-        <div className="row" style={{"padding":"0 15px"}}>
-          <span className="item-number"><i className="fa fa-star" /><span dangerouslySetInnerHTML={{__html: this.highlightText(ticket.number)}}/></span>
-          <span className="item-summary" dangerouslySetInnerHTML={{__html: this.highlightText($.trim(ticket.summary))}} />
-        </div>
-        <span className="item-milestone" dangerouslySetInnerHTML={{__html: this.highlightText($.trim(ticket.milestone))}} />
-        <div className="row space-row" style={{'padding': '0 15px'}}>
-          <span className="item-space"><i className="fa fa-globe" /><span dangerouslySetInnerHTML={{__html: this.highlightText(ticket.space)}} /></span>
-        </div>
+          <a href={`https://www.assembla.com/${ticket.link}`} >
+            <div className="row" style={{"padding":"0 15px"}}>
+              <span className="item-number"><i className="fa fa-star" /><span dangerouslySetInnerHTML={{__html: this.highlightText(ticket.number)}}/></span>
+              <span className="item-summary" dangerouslySetInnerHTML={{__html: this.highlightText($.trim(ticket.summary))}} />
+            </div>
+            <span className="item-milestone" dangerouslySetInnerHTML={{__html: this.highlightText($.trim(ticket.milestone))}} />
+            <div className="row space-row" style={{'padding': '0 15px'}}>
+              <span className="item-space"><i className="fa fa-globe" /><span dangerouslySetInnerHTML={{__html: this.highlightText(ticket.space)}} /></span>
+            </div>
+          </a>
       </li>
      )
     })
