@@ -88,6 +88,35 @@ class TicketsList extends Component {
           $('#search').focus();
         }
       }
+      if(code == keycodes.down){
+         e.preventDefault();
+         const allInputs = $("input,.visible a");
+         let currentTab = e.target;
+         let nextTab = currentTab;
+         if(currentTab.className == 'nav-followed-tickets' || currentTab.className == 'nav-open-tickets') nextTab = allInputs[1]; 
+          for(let i = 0; i < allInputs.length; i++){
+            if(currentTab == allInputs[i] && i + 1 < allInputs.length) {
+              nextTab = allInputs[i + 1] 
+            }
+          }
+          $('.has-focus').removeClass('has-focus');
+          $(nextTab).focus();
+          $(nextTab).closest('li').addClass('has-focus'); 
+      }
+      if(code == keycodes.up){
+         e.preventDefault();
+         const allInputs = $("input,.visible a");
+         let currentTab = e.target;
+         let nextTab = currentTab;
+          for(let i = 0; i < allInputs.length; i++){
+            if(currentTab == allInputs[i] && i - 1 >= 0) {
+              nextTab = allInputs[i - 1] 
+            }
+          }
+          $('.has-focus').removeClass('has-focus');
+          $(nextTab).focus();
+          $(nextTab).closest('li').addClass('has-focus'); 
+      }
     }
   }
   render(){

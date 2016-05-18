@@ -156,9 +156,13 @@ $c-assembla-blue: #1c81d2;
 
 			&:focus{
 				.item-number {
-					text-decoration:underline!important; 
+					//text-decoration:underline!important; 
 				}
 			}
+		}
+
+		&.has-focus{
+			background: #ffffcc!important; 
 		}
 
 	}
