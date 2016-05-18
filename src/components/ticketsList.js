@@ -119,6 +119,10 @@ class TicketsList extends Component {
       }
     }
   }
+  handleKeyUp(){
+        $('.has-focus').removeClass('has-focus');
+        $(document.activeElement).closest('li').addClass('has-focus');
+  }
   render(){
     var tickets = {open:[], followed:[]}
     if(this.props.openTickets.length > 0){
@@ -128,7 +132,7 @@ class TicketsList extends Component {
       tickets.followed = this.filterResults(this.parseData(this.props.followedTickets));
     }
     return(
-      <div id="pages" className="" onKeyDown={this.handleKeyDown.bind(this)}>
+      <div id="pages" className="" onKeyDown={this.handleKeyDown.bind(this)} onKeyUp={this.handleKeyUp.bind(this)}>
         <div className="header clearfix">
             <div className="branding">
               <h1>Assemb<span className="accent">{"{"}</span>list<span className="accent">{"}"}</span></h1>
