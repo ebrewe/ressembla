@@ -64,15 +64,30 @@ class TicketsList extends Component {
   }
   handleKeyDown(e){
     const code = e.keyCode;
-    const keycodes = { up:38, down:40, tab:9, enter:13, shift:16};
+    const keycodes = { up:38, down:40, tab:9, enter:13, shift:16, left:37, right:39};
     let actionKey = false;
     for(let i in keycodes){
       if (code == keycodes[i]) {
-        return actionKey = true;
+        actionKey = true;
       }
     }
     if(!actionKey){
       $('#search').focus();
+    }else{
+      if(code == keycodes.left){
+        if($('#search').is(':focus')){
+          $('.nav-followed-tickets').focus();
+        }else{
+          $('.nav-open-tickets  ').focus();
+        }
+      }
+      if(code == keycodes.right){
+        if($('.nav-open-tickets ').is(':focus')){
+          $('.nav-followed-tickets').focus();
+        }else{
+          $('#search').focus();
+        }
+      }
     }
   }
   render(){
@@ -90,8 +105,8 @@ class TicketsList extends Component {
               <h1>Assemb<span className="accent">{"{"}</span>list<span className="accent">{"}"}</span></h1>
             </div>
             <ul className="page-navigation list">
-              <li className="list-item"><a href className="active tab-right" onClick={(e)=>{this.tabClick(e, 0)}} title="my tickets">Open Tickets</a></li>
-              <li className="list-item"><a href onClick={(e)=>{this.tabClick(e, 1)}} title="followed tickets">Followed Tickets</a></li>
+              <li className="list-item"><a href className="active tab-right nav-open-tickets" onClick={(e)=>{this.tabClick(e, 0)}} title="my tickets">Open Tickets</a></li>
+              <li className="list-item"><a href className="nav-followed-tickets" onClick={(e)=>{this.tabClick(e, 1)}} title="followed tickets">Followed Tickets</a></li>
               <li className="list-item list-item-search">
                 <div className="search">
                   <i className="fa fa-search" />
