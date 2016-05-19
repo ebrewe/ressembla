@@ -196,6 +196,21 @@ $c-assembla-blue: #1c81d2;
 	}
 }
 
+.pages-login{
+	padding:80px 30px;
+	background:$c-assembla-blue;
+
+	a{
+		font-size:22px;
+		color:white;
+
+		&:focus,
+		&:hover{
+			text-decoration:underline;
+		}
+	}
+}
+
 #open_tickets {
 	.item-number {
 		display:block;

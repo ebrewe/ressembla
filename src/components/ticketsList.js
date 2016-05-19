@@ -25,6 +25,9 @@ class TicketsList extends Component {
      var el = document.createElement('html');
       el.innerHTML = data;
       let links = [];
+      let loginTest = 'Sign In | Assembla'
+      let notLoggedIn = loginTest == $(el).find('title')[0].innerHTML
+      if(!notLoggedIn){
        $(el).find('tr[id^="ticket_"]').each(function(){
           let link= $(this).attr('data-linkUrl'),
               number = getItemNumber($(this).find('td.number').find('p').text()),
@@ -36,6 +39,9 @@ class TicketsList extends Component {
       function getItemNumber(numStr){
         var tempStr = numStr.match( /\d+/g );
         return tempStr.length? tempStr[0] : tempStr;
+        }
+      }else{
+        links = [{link:'https://www.assembla.com/login', number:'false',summary:'false',milestone:'false',space:'false'}];
       }
       //this.setLocalStorage(`ressembla-${this.props.containerID}`, links);
       return links;
@@ -131,6 +137,26 @@ class TicketsList extends Component {
     if(this.props.followedTickets.length > 0){
       tickets.followed = this.filterResults(this.parseData(this.props.followedTickets));
     }
+    if((tickets.followed.length && tickets.followed[0].number == "false") || (tickets.open.length && tickets.open[0].number == "false")){
+      return(
+        <div id="pages" className="pages-login">
+          <div className="container text-center">
+            <a href="https://www.assembla.com/login" target="_blank">Login to Assembla</a>
+          </div>
+        </div>
+      );
+    }
+
+    if(!this.props.openTickets){
+      return(
+        <ul className="list-ticket-list">
+            <div className="load-container">
+              <div className="circle"></div>
+            </div>
+        </ul>
+      )
+    }
+
     return(
       <div id="pages" className="" onKeyDown={this.handleKeyDown.bind(this)} onKeyUp={this.handleKeyUp.bind(this)}>
         <div className="header clearfix">
